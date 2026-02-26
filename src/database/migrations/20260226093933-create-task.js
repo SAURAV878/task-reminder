@@ -1,25 +1,35 @@
 
 /** @type {import('sequelize-cli').Migration} */
 
+
+
   export async function up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Tasks', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      title: {
         type: Sequelize.STRING
       },
-      lastName: {
+      description: {
+        type: Sequelize.TEXT
+      },
+      dueDate: {
+        type: Sequelize.DATE
+      },
+      priority: {
         type: Sequelize.STRING
       },
-      email: {
+      status: {
         type: Sequelize.STRING
       },
-      password: {
-        type: Sequelize.STRING
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {model: 'Users', key: 'id'}, //the pointer
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +42,6 @@
     });
   }
 
-  export async function down(queryInterface) {
-    await queryInterface.dropTable('Users');
+  export async function down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Tasks');
   }
