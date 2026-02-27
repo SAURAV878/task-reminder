@@ -10,6 +10,10 @@ export default (sequelize) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      User.hasMany(models.Task, {
+        foreignKey: 'userId',
+        as: 'tasks'
+      })
       // define association here
     }
   }
