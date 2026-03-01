@@ -27,3 +27,24 @@ export const createTask = async (req, res) =>{
 
     }
 }
+
+export const getTasks = async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        const tasks = await Task.findAll({
+            where : { userId },
+            order : [['createdAt', 'DESC']]
+        });
+
+        return res.status(200).json({
+            message: "Successfully read the getTasks",
+            tasks
+        });
+
+    } catch (err) {
+        return res.status(500).json({
+            message: "Unable to read getTasks"
+        });
+    }
+}

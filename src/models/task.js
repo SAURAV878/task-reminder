@@ -12,6 +12,11 @@ export default (sequelize) => {
         foreignKey: 'userId',
         as:'user'
       });
+
+      Task.hasMany(models.Reminder, {
+        foreignKey: 'taskId',
+        as: 'reminder'
+      });
       // define association here
     }
   }
