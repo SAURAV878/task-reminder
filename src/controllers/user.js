@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt'
 import db from '../models/index.js'
 
 import jwt from 'jsonwebtoken';
-import user from '../models/user.js';
+
 
 const User = db.User;
 

@@ -12,7 +12,6 @@ const router = express.Router();
 
 router.post('/register', register);
 router.post('/login', login);
-// router.post('/tasks', verifyToken);
 router.get('/profile', verifyToken, getProfile);
 
 
