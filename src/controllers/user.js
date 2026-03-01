@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt'
 import db from '../models/index.js'
-import user from '../models/user.js';
+
 import jwt from 'jsonwebtoken';
+import user from '../models/user.js';
 
 const User = db.User;
 
@@ -78,4 +79,20 @@ export const login = async (req, res) => {
             message: 'server error'
         });
     }
+}
+
+export const getProfile = async  (req, res) => {
+    try{
+        const userData = req.user;
+
+        return res.status(200).json({
+            message: 'User profile fetched successfully',
+            user: userData
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: "Error fetching the profile"
+        });
+    }
+
 }
