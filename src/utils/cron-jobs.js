@@ -6,7 +6,7 @@ import db from '../models/index.js';
 const {Reminder, Task} = db;
 
 export const initCron = () => {
-    cron.schedule('*/5 * * * * *', async () => {
+    cron.schedule('* * * * *', async () => {
         console.log("Checker: looking for reminders...");
 
         try {

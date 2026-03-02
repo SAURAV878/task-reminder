@@ -1,6 +1,6 @@
 import db from '../models/index.js'
 
-const Task = db.Task;
+const { Task, Reminder} = db;
 
 export const createTask = async (req, res) =>{
     try {
@@ -15,6 +15,12 @@ export const createTask = async (req, res) =>{
             priority,
             userId
         });
+
+        await Reminder.create ({
+            taskId: newTask.id,
+            remindAt: dueDate,
+            status: 'pending'
+        })
 
         return res.status(201).json({
             message: "Created a newTask successfully"
